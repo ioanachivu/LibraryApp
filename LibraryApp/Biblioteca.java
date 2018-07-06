@@ -12,7 +12,7 @@ public class Biblioteca {
     Set<ImprumutCarte> listaImprumutCarte = new HashSet<>();
    
     // 
-    // CARTE -------------------------------------------------------------------
+    // CARTE -----------------------------------------------------------------------
     // adaugare carte 
     public void adaugaCarte (Carte carte) {
         listaCarti.add(carte);
