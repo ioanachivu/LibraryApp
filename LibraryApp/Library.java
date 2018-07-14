@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-public class Biblioteca {
+public class Library {
     
     Set<Cititor> listaCititori = new HashSet<>();
     Set<Carte> listaCarti = new HashSet<>();
