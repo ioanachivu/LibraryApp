@@ -7,153 +7,153 @@ import java.util.Set;
 
 public class Library {
     
-    Set<Cititor> listaCititori = new HashSet<>();
-    Set<Carte> listaCarti = new HashSet<>();
-    Set<ImprumutCarte> listaImprumutCarte = new HashSet<>();
+    Set<Reader> readersList = new HashSet<>();
+    Set<Book> booksList = new HashSet<>();
+    Set<BookBorrowing> borrowBookList = new HashSet<>();
    
     // 
-    // CARTE -----------------------------------------------------------------------
-    // adaugare carte 
-    public void adaugaCarte (Carte carte) {
-        listaCarti.add(carte);
+    // BOOK -----------------------------------------------------------------------
+    // adding a book 
+    public void addingBook (Book book) {
+        booksList.add(book);
     }
     
-    // actualizarea unei carti
-    public void actualizareCarte(String numeCarte, String autorCarte ){
+    // updating a book
+    public void updatingBook(String bookName, String bookAuthor ){
         Scanner input = new Scanner(System.in);
-        for(Carte c: listaCarti) {
-            if (c.getTitlu().equals(numeCarte) && c.getAutor().equals(autorCarte)) {
-                System.out.println("Ce doriti sa modificati: domeniu/descriere");
-                if (input.nextLine().equals("domeniu")) {
-                    System.out.println("Introduceti noul domeniu:");
-                    c.setDomeniu(input.nextLine());
+        for(Book c: booksList) {
+            if (c.getTitle().equals(bookName) && c.getAuthor().equals(bookAuthor)) {
+                System.out.println("What do you want to change: domain/description");
+                if (input.nextLine().equals("domain")) {
+                    System.out.println("Insert the new domain:");
+                    c.setDomain(input.nextLine());
                 } else {
-                    System.out.println("Introduceti o descriere");
-                    c.setDescriere(input.nextLine());
+                    System.out.println("Insert a description");
+                    c.setDescription(input.nextLine());
                 }
             } input.close();
         }
     }
     
-    // stergerea unei carti dupa nume carte si autor 
-    public void stergereCarte() {
+    // deleting a book by name and author
+    public void deletingBook() {
     	Scanner input = new Scanner(System.in);
     	System.out.println("Insert the name of the book you want to delete:");
-    	String numeCarte = input.nextLine();
+    	String bookName = input.nextLine();
     	System.out.println("Insert the author of the book you want to delete:");
-    	String autorCarte = input.nextLine();
-        for (Carte c: listaCarti) {
-            if (c.getTitlu().equals(numeCarte) && c.getAutor().equals(autorCarte)) {
-                listaCarti.remove(c);
-                System.out.println("Cartea: "+c.getTitlu()+" de "+c.getAutor()+" a fost stearsa");
+    	String bookAuthor = input.nextLine();
+        for (Book c: booksList) {
+            if (c.getTitle().equals(bookName) && c.getAuthor().equals(bookAuthor)) {
+                booksList.remove(c);
+                System.out.println("Book: "+c.getTitle()+" by "+c.getAuthor()+" was deleted");
                 break;
             } 
         }  input.close();
     }
     
-    // stergerea unei carti avand disponibil obiectul carte
-    public void stergereCarte(Carte c) {
-        listaCarti.remove(c); // hashset-ul isi pastreaza hash-ul intern al fiecarui obiect
-        System.out.println("Cartea: "+c.getTitlu()+" de "+c.getAutor()+" a fost stearsa");
+    // deleting a book using the book object
+    public void deletingBook(Book c) {
+        booksList.remove(c); 
+        System.out.println("Book: "+c.getTitle()+" by "+c.getAuthor()+" was deleted");
     }
     
-    // listarea tuturor cartilor
-    public void listareCarti(){
-        for(Carte c: listaCarti) 
-            System.out.println(c.getTitlu()+": "+c.getAutor()+" este in biblioteca");
+    // listing all the books
+    public void listingBook(){
+        for(Book c: booksList) 
+            System.out.println(c.getTitle()+": "+c.getAuthor()+" is in the library");
     }
     
-    // listarea tuturor autorilor
-    public void listareAutori() {
-        for(Carte c: listaCarti) {
-            System.out.println("Autorul: "+c.getAutor()+" este in biblioteca");
+    // listing all the authors
+    public void listingAuthors() {
+        for(Book c: booksList) {
+            System.out.println("Author: "+c.getAuthor()+" is in the library");
         }
     }
     
-    // CITITOR -----------------------------------------------------------------
-    // adaugarea unui cititor
-    public void adaugaCititor (Cititor cititor) {
-        listaCititori.add(cititor);
+    // READER -----------------------------------------------------------------
+    // adding a reader
+    public void addReader (Reader reader) {
+        readersList.add(reader);
     }
     
-    // actualizarea unui cititor
-    public void actualizareCititor(String cnp){
+    // updating a reader
+    public void updateReader(String ssn){
         Scanner input = new Scanner(System.in);
-        for(Cititor c: listaCititori) {
-            if (c.getCnp().equals(cnp)) {
-                System.out.println("Introduceti noul nume");
-                    c.setNume(input.nextLine());
+        for(Reader c: readersList) {
+            if (c.getSsn().equals(ssn)) {
+                System.out.println("Insert new name:");
+                    c.setName(input.nextLine());
                 } 
             } input.close();
         }
     
-    // stergerea unui cititor
-    public void stergereCititor(String cititorDeSters) {
-        for (Cititor c: listaCititori) {
-            if (c.getCnp().equals(cititorDeSters)) {
-                listaCititori.remove(c);
-                System.out.println("Cititorul: "+c.getNume()+" a fost sters");
+    // deleting a reder
+    public void deleteReader(String readerToBeDeleted) {
+        for (Reader c: readersList) {
+            if (c.getSsn().equals(readerToBeDeleted)) {
+                readersList.remove(c);
+                System.out.println("Reader: "+c.getName()+" was deleted");
             break;
             } 
         } 
     }
     
-    // stergerea unui cititor folosind obiectul cititor
-    public void stergereCititor(Cititor c) {
-        listaCititori.remove(c);
-        System.out.println("Cititorul: "+c.getNume()+" a fost sters");
+    // deleting a reader using the reader object
+    public void deleteReader(Reader c) {
+        readersList.remove(c);
+        System.out.println("Reader: "+c.getName()+" has been deleted");
     }
     
-    // listarea tuturor cititorilor
-    public void listareCititori () {
-        for(Cititor c: listaCititori) {
-            System.out.println("Cititorul "+c.getNume()+" este in baza de date");
+    // listing all the readers
+    public void listingReaders () {
+        for(Reader c: readersList) {
+            System.out.println("Reader "+c.getName()+" is in the data base");
         }
     }
     
-    // CAUTARE -----------------------------------------------------------------
-    // cautarea unei carti dupa titlu/autor
-    public Carte cautareCarte (String termenCautare) {         
-        Carte carteGasita = null;   
-        for(Carte c : listaCarti) {
-            if (c.getTitlu().equals(termenCautare) || c.getAutor().equals(termenCautare)) {
-                carteGasita = c;
+    // SEARCHING -----------------------------------------------------------------
+    // searching for a book using the title/author
+    public Book searchBook (String searchTerm) {         
+        Book bookFound = null;   
+        for(Book c : booksList) {
+            if (c.getTitle().equals(searchTerm) || c.getAuthor().equals(searchTerm)) {
+                bookFound = c;
                 break; 
             }
         }   
-        return carteGasita;
+        return bookFound;
     }
     
-    // cautarea unui cititor dupa nume/cnp
-    public Cititor cautareCititor (String persCautata) {
-        Cititor persGasita = null;
-        for (Cititor c: listaCititori) {
-            if (c.getCnp().equals(persCautata) || c.getNume().equals(persCautata)) {
-                persGasita = c;
+    // searching for a reader using the ssn/name
+    public Reader searchingReader (String persSearched) {
+        Reader persFound = null;
+        for (Reader c: readersList) {
+            if (c.getSsn().equals(persSearched) || c.getName().equals(persSearched)) {
+                persFound = c;
                 break;
             }
         }
-        return persGasita;
+        return persFound;
     }
     
-    // imprumtarea unei carti
-    public void imprumutCarte(ImprumutCarte imprumut) {
-        listaImprumutCarte.add(imprumut);
-        System.out.println(imprumut.cititorImprumuta.toString()+" a imprumutat "+imprumut.carteImprumutata.toString());
+    // borrowing a book
+    public void borrowBook(BookBorrowing b) {
+        borrowBookList.add(b);
+        System.out.println(b.readerThatBorrowed.toString()+" a imprumutat "+b.borrowdBook.toString());
     }
     
-    // returnarea unei carti
-    public void returnareCarte (ImprumutCarte returnare) {
-        listaImprumutCarte.remove(returnare);
-        System.out.println(returnare.cititorImprumuta.toString()+ " a returnat "+returnare.carteImprumutata.toString());
+    // returning a book
+    public void returnBook (BookBorrowing borrowed) {
+    	borrowBookList.remove(borrowed);
+        System.out.println(borrowed.readerThatBorrowed.toString()+ " returned "+borrowed.borrowdBook.toString());
     }
     
-    public void listaNereturnate () { 
-        System.out.println("Lista cartilor nereturnate:");
+    public void unreturnedList () { 
+        System.out.println("Unreturned books list:");
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime trecut = now.plusDays(-30);
-        for(ImprumutCarte c: listaImprumutCarte) {
-            if(c.dataImprumut.toInstant().isBefore(trecut.toInstant()))
+        for(BookBorrowing c: borrowBookList) {
+            if(c.dateOfBorrow.toInstant().isBefore(trecut.toInstant()))
                 System.out.println(c.toString());
         }
     }

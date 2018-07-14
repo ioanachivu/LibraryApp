@@ -4,96 +4,96 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
         
-        Library biblioteca = new Library();
+        Library library = new Library();
         
-        // CARTE --------------------------------------------------------- 
-        // creare obiecte carte
-        Carte carte1 = new Carte("1","Morometii","Preda","Roman");
-        Carte carte2 = new Carte("2","Luceafarul","Eminescu","Poezii");
-        Carte carte3 = new Carte("3","Maitreyi","Mircea Eliade","Roman");
-        Carte carte4 = new Carte("4","Teatru","Caragiale","Comedie");
-        Carte carte5 = new Carte("5","Baltagul","Sadoveanu","Roman");
+        // BOOK --------------------------------------------------------- 
+        // creating book objects
+        Book book1 = new Book("1","Morometii","Preda","Roman");
+        Book book2 = new Book("2","Luceafarul","Eminescu","Poezii");
+        Book book3 = new Book("3","Maitreyi","Mircea Eliade","Roman");
+        Book book4 = new Book("4","Teatru","Caragiale","Comedie");
+        Book book5 = new Book("5","Baltagul","Sadoveanu","Roman");
        
   
-        // adaugare obiecte carte in set
-        biblioteca.adaugaCarte(carte1);
-        biblioteca.adaugaCarte(carte2);
-        biblioteca.adaugaCarte(carte3);
-        biblioteca.adaugaCarte(carte4);
-        biblioteca.adaugaCarte(carte5);
+        // adding book objects in set
+        library.addingBook(book1);
+        library.addingBook(book2);
+        library.addingBook(book3);
+        library.addingBook(book4);
+        library.addingBook(book5);
         
-        // actualizarea unei carti
-        biblioteca.actualizareCarte("Teatru", "Caragiale");
-        System.out.println(carte4.getDomeniu()+": "+carte4.getDescriere());
+        // updating a book
+        library.updatingBook("Teatru", "Caragiale");
+        System.out.println(book4.getDomain()+": "+book4.getDescription());
         
-        // stergerea unei carti
-        biblioteca.stergereCarte();
-        //biblioteca.stergereCarte(carte1);
+        // deleting a book
+        library.deletingBook();
+        library.deletingBook(book1);
         
-        // listare carti din biblioteca 
-        biblioteca.listareCarti();
+        // listing books 
+        library.listingBook();
         
-        // listare autori din biblioteca
-        biblioteca.listareAutori();
+        // listing authors
+        library.listingAuthors();
         
         // CITITOR-----------------------------------------------------
-        // creare obiecte cititor
-        Cititor cititor1 = new Cititor("Mihai Lungu","1870625452268");
-        Cititor cititor2 = new Cititor("Ana Zaharia","2840621450087");
-        Cititor cititor3 = new Cititor("Feli Matei","2850328442077");
-        Cititor cititor4 = new Cititor("Miruna Tanase","2858442458023");
-        Cititor cititor5 = new Cititor("Dragos Ionescu","1900158447892");
+        // creating reader objects
+        Reader reader1 = new Reader("Mihai Lungu","1870625452268");
+        Reader reader2 = new Reader("Ana Zaharia","2840621450087");
+        Reader reader3 = new Reader("Feli Matei","2850328442077");
+        Reader reader4 = new Reader("Miruna Tanase","2858442458023");
+        Reader reader5 = new Reader("Dragos Ionescu","1900158447892");
         
-        // adaugare obiecte cititor in set
-        biblioteca.adaugaCititor(cititor1);
-        biblioteca.adaugaCititor(cititor2);
-        biblioteca.adaugaCititor(cititor3);
-        biblioteca.adaugaCititor(cititor4);
-        biblioteca.adaugaCititor(cititor5);
+        // adding reader objects in list
+        library.addReader(reader1);
+        library.addReader(reader2);
+        library.addReader(reader3);
+        library.addReader(reader4);
+        library.addReader(reader5);
         
-        // actualizarea unui cititor
-        //biblioteca.actualizareCititor("2840621450087");
-        //System.out.println(cititor2.getNume());
+        // updateing a reader
+        library.updateReader("2840621450087");
+        System.out.println(reader2.getName());
         
-        // stergerea unui cititor
-        biblioteca.stergereCititor("1870625452268");
-        //biblioteca.stergereCititor(cititor1);
+        // deleting a reader
+        library.deleteReader("1870625452268");
+        //biblioteca.deleteReader(reader1);
         
-        // listarea tuturor cititorilor
-        biblioteca.listareCititori();
+        // listing all the readers
+        library.listingReaders();
         
         
-        // CAUTARE---------------------------------------------------------------------
-        // cautarea unei carti
-        Carte carteGasita = biblioteca.cautareCarte("Maitreyi");
-        if (carteGasita instanceof Carte) {
-            System.out.println("Cartea cautata: "+carteGasita.getTitlu()+" a fost gasita");
+        // SEARCHING---------------------------------------------------------------------
+        // searching for a book
+        Book bookFound = library.searchBook("Maitreyi");
+        if (bookFound instanceof Book) {
+            System.out.println("Searched book: "+bookFound.getTitle()+" has been found");
         } else {
-            System.out.println("Cartea cautata nu a fost gasita");
+            System.out.println("The book was not found");
         }
         
-        // cautarea unui cititor
-        Cititor cititorGasit = biblioteca.cautareCititor("Feli Matei");
-        if (cititorGasit instanceof Cititor) {
-            System.out.println("Cititorul: "+cititorGasit.getNume()+" a fost gasit");
+        // searching for a reader
+        Reader readerFound = library.searchingReader("Feli Matei");
+        if (readerFound instanceof Reader) {
+            System.out.println("Reader: "+readerFound.getName()+" has been found");
         } else {
-            System.out.println("Cititorul nu exista in baza de date");
+            System.out.println("The reader in not in the data base");
         }
         
-        // IMPRUMUT ------------------------------------------------------------
+        // BORROWING ------------------------------------------------------------
         
-        ImprumutCarte imprumut1 = new ImprumutCarte(carte2, cititor2, new Date());
-        ImprumutCarte imprumut2 = new ImprumutCarte(carte3, cititor3, new Date());
-        ImprumutCarte imprumut3 = new ImprumutCarte(carte4, cititor4, new Date());
-        ImprumutCarte imprumut4 = new ImprumutCarte(carte5, cititor5, new Date());
+        BookBorrowing borrow1 = new BookBorrowing(book2, reader2, new Date());
+        BookBorrowing borrow2 = new BookBorrowing(book3, reader3, new Date());
+        BookBorrowing borrow3 = new BookBorrowing(book4, reader4, new Date());
+        BookBorrowing borrow4 = new BookBorrowing(book5, reader5, new Date());
         
-        biblioteca.imprumutCarte(imprumut1);
-        biblioteca.imprumutCarte(imprumut2);
-        biblioteca.imprumutCarte(imprumut3);
-        biblioteca.imprumutCarte(imprumut4);
+        library.borrowBook(borrow1);
+        library.borrowBook(borrow2);
+        library.borrowBook(borrow3);
+        library.borrowBook(borrow4);
         
         
-        // lista carti netreturnate
-        biblioteca.listaNereturnate();
+        // unreturned books
+        library.unreturnedList();
     }
 }
